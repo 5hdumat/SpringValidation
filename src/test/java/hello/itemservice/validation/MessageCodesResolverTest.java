@@ -1,4 +1,4 @@
-package hello.itemservice;
+package hello.itemservice.validation;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

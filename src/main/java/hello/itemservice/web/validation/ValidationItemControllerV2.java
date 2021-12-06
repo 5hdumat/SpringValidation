@@ -30,10 +30,10 @@ public class ValidationItemControllerV2 {
     // ItemValidator을 컴포넌트 스캔 처리하고 스프링으로부터 의존성을 주입 받았다.
     private final ItemValidator itemValidator;
 
-//    @InitBinder
-//    public void init(WebDataBinder dataBinder) {
-//        dataBinder.addValidators(itemValidator);
-//    }
+    @InitBinder
+    public void init(WebDataBinder dataBinder) {
+        dataBinder.addValidators(itemValidator);
+    }
 
     @GetMapping
     public String items(Model model) {
@@ -263,7 +263,8 @@ public class ValidationItemControllerV2 {
      * 그런데 Validator 인터페이스를 사용해서 검증기를 만들면 스프링의 추가적인 도움을 받을 수 있다.
      *
      * WebDataBinder는 스프링의 파라미터 바인딩의 역할을 해주고 검증 기능도 내부에 포함한다.
-     * 컨트롤러에 하단의 생성자를 추가해준 후 호출 메서드의 item에 대해서 검증기르 실행시키기 위해 @Validated 를 하나 더 추가한다.
+     * 컨트롤러에 하단의 생성자를 추가해준 후 호출 메서드의 item에 대해서 검증기를 실행시키기 위해 @Validated 를 하나 더 추가한다.
+     * (@Validated 는 검증기를 실행하라는 애노테이션이다.)
      *
      * @InitBinder
      * public void init(WebDataBinder dataBinder) {
@@ -271,7 +272,7 @@ public class ValidationItemControllerV2 {
      *      dataBinder.addValidators(itemValidator);
      * }
      *
-     * 참고 ) 여러 검증기를 등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분이 필요하다.
+     * 참고) 여러 검증기를 등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분이 필요하다.
      * 이때 supports() 가 사용된다.
      * 여기서는 supports(Item.class) 호출되고, 결과가 true 이므로 ItemValidator 의 validate() 가 호출된다.
      */

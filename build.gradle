@@ -21,6 +21,15 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	/**
+	 * 스프링 부트가 하단의 라이브러리를 넣으면 자동으로 Bean Validator를 인지하고 스프링에 통합한다.
+	 *
+	 * LocalValidatorFactoryBean 을 글로벌 Validator로 등록한다.
+	 * 이 Validator는 @NotNull 같은 애노테이션을 보고 검증을 수행한다.
+	 * 이렇게 글로벌 Validator가 적용되어 있기 때문에, @Valid , @Validated 만 적용하면 된다.
+	 */
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
